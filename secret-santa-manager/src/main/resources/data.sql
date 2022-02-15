@@ -1,0 +1,10 @@
+insert into team_member(first_name,last_name)values('David','Brent');
+insert into team_member(first_name,last_name)values('Michael','Scott');
+insert into team_member(first_name,last_name)values('Jim','Halpert');
+insert into team_member(first_name,last_name)values('Dwight','Schrutte');
+insert into team_member(first_name,last_name)values('Pam','Beesly');
+insert into team_member(first_name,last_name)values('Erin','Hannon');
+insert into team_member(first_name,last_name)values('Kevin','Malone');
+insert into team_member(first_name,last_name)values('Angela','Martin');
+insert into team_member(first_name,last_name)values('Andy','Bernard');
+insert into team_member(first_name,last_name)values('Toby','Flenderson');
