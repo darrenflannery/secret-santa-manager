@@ -36,13 +36,13 @@ Endpoints:
 * Delete Team Member
 * Create Secret Santa List
 
-## OpenAPI Specification
-TODO: Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Output
+The output is available as a readable list of Strings in the following format:
 
-Please make sure to update tests as appropriate.
 ![Alt text](secret-santa-manager/src/main/resources/img/ReadableOutput.png?raw=true "Output")
 
-/secret-santa-manager/src/main/resources/img/ReadableOutput.png
+It is also available in JSON format if you want to call the API from a different application.
+
 
 ## OpenAPI Specification
 TODO: Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
