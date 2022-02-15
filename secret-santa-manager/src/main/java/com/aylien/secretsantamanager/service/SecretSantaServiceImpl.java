@@ -62,8 +62,6 @@ public class SecretSantaServiceImpl implements SecretSantaService{
 				}
 				
 				else {
-					System.out.println(team.get(i).getId()+" : " + potentialRecipient +" : " + excludeList);
-					
 					//add this newly assigned user to exclude list so he/she will not be added again
 					alreadyAssigned.add(potentialRecipient);
 					excludeList.clear();

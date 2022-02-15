@@ -41,9 +41,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Swagger UI -->
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-ui</artifactId>
+		    <version>1.6.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>secret-santa</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

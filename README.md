@@ -10,38 +10,54 @@ The list will be returned in readable String format or in JSON for use with othe
 
 ## Running the application
 
-### Using JAR:
-
-TODO: Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-java .jar etc.
-```
-
 ### Using Docker:
 
-TODO: Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+From the directory secret-santa-manager/ where Dockerfile is located run the following command:
 
 ```bash
-java .jar etc.
+docker build -t secret-santa-docker .
 ```
+
+The to run the application:
+
+```bash
+docker run -p 9090:8080 secret-santa-docker
+```
+
+The application will then be running on port 9090.
+
+### As a Spring Boot App:
+
+Download the project to your local machine and run as a Spring Boot app using your favourite IDE. The application runs on port 8080.
+
+### Using JAR:
+
+The JAR file is available in the target folder. The JAR must be run using Java 11. 
+
+```bash
+java -jar secret-santa.jar
+```
+
+The application runs on port 8080.
+
+
 ## Postman Collection
 
 Availale in the following path: [secret-santa-manager\src\main\resources](https://github.com/darrenflannery/secret-santa-manager/tree/main/secret-santa-manager/src/main/resources)
 
 Endpoints:
 
-* Save Team Member
-* Get All Team Members
-* Delete Team Member
-* Create Secret Santa List
+* Save Team Member (/secretsanta/save)
+* Get All Team Members (/secretsanta/getall)
+* Delete Team Member (/secretsanta/delete/{1})
+* Create Secret Santa List (/secretsanta/workmagic/{year})
 
 ## Create Secret Santa List
 
 ### Input
 You pass a selected year to the endpoint.
 
-The application applies a set of logic that does not 
+The application applies a set of logic that does not allow a Team Member to have the same Secret Santa they have had in the last 3 years.
 
 ### Output
 The output is available as a readable list of Strings in the following format:
@@ -50,21 +66,15 @@ The output is available as a readable list of Strings in the following format:
 
 It is also available in JSON format if you want to call the API from a different application.
 
+## Data
+The data is stored in a H2 relational database. When the application is started up there is sample data loaded from a script (data.sql).
 
 ## OpenAPI Specification
-TODO: Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
-
-## Logic for generating Secret Santa List
-TODO: Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+http://localhost:8080/swagger-ui/index.html
 
 ## Future Development
 
 1. Improve testing.
 2. Make improvements in situations where a list cannot be gernerated because of too many contraints by removing the 3 year rule after a certain amount of retries.
 
-### Testing
-TODO
