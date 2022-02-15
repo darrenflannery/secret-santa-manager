@@ -45,10 +45,10 @@ class TeamMemberRepositoryTest {
 		repo.save(teamMember1);
 		repo.save(teamMember2);
 		
-		List<TeamMember> productList = (List<TeamMember>) repo.findAll();
+		List<TeamMember> team = (List<TeamMember>) repo.findAll();
 
-		assertTrue(productList.get(0).getFirstName().length()>0);
-		assertTrue(productList.size()>0);
+		assertTrue(team.get(0).getFirstName().length()>0);
+		assertTrue(team.size()>0);
 	}
 
 	@Test

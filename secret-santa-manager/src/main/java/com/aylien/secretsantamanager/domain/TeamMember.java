@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,15 +25,16 @@ public class TeamMember {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  
 	private int id;
+	
 	@Column(name="FIRST_NAME", nullable = false)
-	
 	private String firstName;
+	
 	@Column(name="LAST_NAME", nullable = false)
-	
 	private String lastName;
-	@Column(name="RECIPIENT_ID", nullable = true)
 	
+	@Column(name="RECIPIENT_ID", nullable = true)
 	private Integer recipientId;
+	
 	@OneToMany(
 			targetEntity = TeamMemberHistoryRecord.class,
 			cascade = CascadeType.ALL,
