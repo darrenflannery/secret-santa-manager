@@ -40,6 +40,13 @@ java -jar secret-santa.jar
 
 The application runs on port 8080.
 
+## To Use the application
+
+Run the following in browser,Postman or CURL to generate a Secret Santa list:
+
+http://localhost:8080/secretsanta/workmagic/{year}
+
+Other endpoints are also available as shown in the Postman Collection outlined below
 
 ## Postman Collection
 
