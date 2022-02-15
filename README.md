@@ -60,14 +60,29 @@ You pass a selected year to the endpoint.
 The application applies a set of logic that does not allow a Team Member to have the same Secret Santa they have had in the last 3 years.
 
 ### Output
+#### Readable String
+
+/secretsanta/workmagic/{year}
+
 The output is available as a readable list of Strings in the following format:
 
 ![Alt text](secret-santa-manager/src/main/resources/img/ReadableOutput.png?raw=true "Output")
 
+#### JSON format
+
+/secretsanta/getall
+
 It is also available in JSON format if you want to call the API from a different application.
+
+Each Teamember will be assigned the ID of another team member in the field: recipientId
 
 ## Data
 The data is stored in a H2 relational database. When the application is started up there is sample data loaded from a script (data.sql).
+
+TeamMember (Table: TEAM_MEMBER) : Hold data on each Member
+
+
+TeamMemberHistoryRecord (Table: HISTORY_RECORD) : A record of a team members previous recipient and year.
 
 ## OpenAPI Specification
 
@@ -76,5 +91,5 @@ http://localhost:8080/swagger-ui/index.html
 ## Future Development
 
 1. Improve testing.
-2. Make improvements in situations where a list cannot be gernerated because of too many contraints by removing the 3 year rule after a certain amount of retries.
+2. Make improvements in situations where a list cannot be generated because of too many constraints by removing the 3 year rule after a certain amount of retries.
 
