@@ -1,7 +1,7 @@
 package com.aylien.secretsantamanager.service;
 
-import java.util.List;
+import com.aylien.secretsantamanager.domain.SecretSantaResult;
 
 public interface SecretSantaService {
-	List<String> createList();
+	SecretSantaResult createList(int year);
 }

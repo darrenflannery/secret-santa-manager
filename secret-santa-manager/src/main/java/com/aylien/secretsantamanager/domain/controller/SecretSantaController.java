@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.aylien.secretsantamanager.domain.SecretSantaResult;
 import com.aylien.secretsantamanager.domain.TeamMember;
 import com.aylien.secretsantamanager.repository.TeamMemberRepository;
 import com.aylien.secretsantamanager.service.SecretSantaService;
@@ -45,9 +47,9 @@ public class SecretSantaController {
 		}
 	}
 	
-	@RequestMapping("/workmagic")
-	public List<String> createSecretSantaList() {
-		return service.createList();
+	@RequestMapping("/workmagic/{year}")
+	public SecretSantaResult createSecretSantaList(@PathVariable("year") int year) {
+		return service.createList(year);
 	}
 	
 }

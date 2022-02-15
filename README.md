@@ -36,7 +36,14 @@ Endpoints:
 * Delete Team Member
 * Create Secret Santa List
 
-## Output
+## Create Secret Santa List
+
+### Input
+You pass a selected year to the endpoint.
+
+The application applies a set of logic that does not 
+
+### Output
 The output is available as a readable list of Strings in the following format:
 
 ![Alt text](secret-santa-manager/src/main/resources/img/ReadableOutput.png?raw=true "Output")
@@ -55,9 +62,9 @@ TODO: Pull requests are welcome. For major changes, please open an issue first t
 Please make sure to update tests as appropriate.
 
 ## Future Development
-TODO: Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+1. Improve testing.
+2. Make improvements in situations where a list cannot be gernerated because of too many contraints by removing the 3 year rule after a certain amount of retries.
 
 ### Testing
 TODO

@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.aylien.secretsantamanager.domain.SecretSantaResult;
 import com.aylien.secretsantamanager.domain.TeamMember;
 import com.aylien.secretsantamanager.domain.TeamMemberHistoryRecord;
 import com.aylien.secretsantamanager.repository.TeamMemberRepository;
@@ -16,8 +18,9 @@ public class SecretSantaServiceImpl implements SecretSantaService{
 	@Autowired
 	private TeamMemberRepository repo;
 
-	public List<String> createList(){
+	public SecretSantaResult createList(int year){
 
+		SecretSantaResult result = new SecretSantaResult(year);
 		List<TeamMember> team = repo.findAll();
 
 		int mainRetry = 0;
@@ -35,7 +38,7 @@ public class SecretSantaServiceImpl implements SecretSantaService{
 
 				//create list of id's that cannot be a recipient
 				//1. Include people who have been a recipient in the last two years
-				excludeList.addAll(getListOfPreviousRecipients(team.get(i),2));
+				excludeList.addAll(getListOfPreviousRecipients(team.get(i),year));
 				//2. Include themselves
 				excludeList.add(team.get(i).getId());
 				//3. Add already assigned
@@ -58,7 +61,9 @@ public class SecretSantaServiceImpl implements SecretSantaService{
 					break;
 				}
 				
-				else {					
+				else {
+					System.out.println(team.get(i).getId()+" : " + potentialRecipient +" : " + excludeList);
+					
 					//add this newly assigned user to exclude list so he/she will not be added again
 					alreadyAssigned.add(potentialRecipient);
 					excludeList.clear();
@@ -72,13 +77,15 @@ public class SecretSantaServiceImpl implements SecretSantaService{
 		}
 		
 		if(allMatched==true) {
-			return makeReadable(team);
+			result.setSantas(makeReadable(team));
 		}
 		else{
 			//do some error handling
 			team = clearAllRecipientIds(team);
-			return makeReadable(null);
+			result.setSantas(makeReadable(null));
 		}
+		
+		return result;
 	}
 	
 	private List<String> makeReadable(List<TeamMember> team) {
@@ -106,14 +113,15 @@ public class SecretSantaServiceImpl implements SecretSantaService{
 		return field1List;
 	}
 
-	private List<Integer> getListOfPreviousRecipients(TeamMember teamMember, int years){
-		//TODO:
-		//only go back n years from current year
+	private List<Integer> getListOfPreviousRecipients(TeamMember teamMember, int year){
 		List <TeamMemberHistoryRecord> r = teamMember.getHistoryRecords();
 		List<Integer> list = new ArrayList<Integer>();
 		if(r!=null) {
 			for(int i=0; i<r.size();i++) {
-				list.add(r.get(i).getRecipientId());
+				//Only add to exlude list if 3 years or less
+				if(year-r.get(i).getYear()>=3){
+					list.add(r.get(i).getRecipientId());
+				}
 			}
 		}
 		return list;
